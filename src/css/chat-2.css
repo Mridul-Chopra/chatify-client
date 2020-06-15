@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
+.second-container{
+    width:100%;
+    height:100vh;
+    display: grid;
+    grid-template-columns: 20fr 80fr;
+    background: #e6e6e6;
+}
+.users{
+    margin:1em;
+    width:20vw;
+    height:50vh;
+    overflow-y:scroll;
+    align-self: center;
+    display: grid;
+    grid-template-rows: 20fr 100fr;
+    border:1px solid black;
+    background: transparent;
+}
+.users .heading{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-size:1.1em;
+    background: #00cc00;
+    color:white;
+}
+
+.users ul{
+    padding:0;
+    margin: 0;
+}
+
+.users ul li:nth-child(odd){
+    background:  #b3b3b3;
+}
+.users ul li:nth-child(even){
+    background:  #cccccc
+}
+.users li{
+    list-style-type:none;
+    margin:0;
+    font-size:1.1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding:1em;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+.row-2{
+    display: grid;
+    grid-template-rows: 10fr 70fr 20fr;
+}
+
+.userName{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size:2rem;
+    font-family: 'Sriracha', cursive;
+}
+
+.send-message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.send-message textarea{
+    width:70vw;
+    height:5vh;
+    resize: none;
+    border-radius:200px;
+    outline: none;
+    border:2px solid black;
+    padding:1em;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size:1.1rem;
+    background: transparent;
+}
+
+.send-message button{
+    height:9vh;
+    width:9vh;
+    border-radius: 200px;
+    border:none;
+    background-color: #00cc00;
+    color:wheat;
+    font-size: 2.5rem;
+    position: absolute;
+    left:92.5vw;
+    outline: none;
+}
+.send-message button:hover{
+    border:2px solid black;
+    border-right: none;
+}
+.messages-wrapper{
+    display:flex;
+    flex-direction: column;
+    max-height: 70vh ;
+    overflow-y: scroll;
+}
+
+.message-box{
+    margin:1em;
+    display: grid;
+    grid-template-rows: 20fr 25fr;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size:1.1rem;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.sender{
+    display:flex;
+    align-items: center;
+    padding:1em;
+    text-transform: uppercase;
+    font-weight: bold;
+    background:#00cc00;
+    color:white;
+    border-bottom:2px solid black;
+}
+.message{
+    padding:1em;
+}
