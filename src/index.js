@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import Chat from './Chat'; // importing the chat component 
-
+import {store} from './reduxImpl';  // importing the store 
+import {Provider} from 'react-redux' // importing the redux provider
 ReactDOM.render(
   <React.StrictMode>
-   <Chat/>
+    <Provider store={store}> {/*wrap the app in the provider and set the store props*/}
+      <Chat/>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

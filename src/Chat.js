@@ -4,6 +4,9 @@
 import React, { useRef, useEffect } from 'react';
 import socketIOClient from "socket.io-client";
 import { animateScroll } from "react-scroll";
+import {setNameReducer} from './reduxImpl'
+import {connect} from 'react-redux';
+
 
 /*importing the css files */
 import './css/chat.css';
@@ -13,7 +16,7 @@ import './css/chat-2.css';
 class Chat extends React.Component{
 
      #socket; // private socket object of socket.io
-     #ENDPOINT ='https://chatifie-server.herokuapp.com/'; // connect to the node server
+     #ENDPOINT ='http://localhost:5000'; // connect to the node server
     
     constructor(props){
         super(props);
@@ -50,7 +53,7 @@ class Chat extends React.Component{
                                                 <this.OnlineUsers users={this.state.usersOnline}/>
                                             </div>
                                             <div className='row-2'>
-                                                <div className='userName'>Welcome {this.state.name}</div>
+                                                <div className='userName'>Welcome {this.props.name}</div>
                                                 <this.Messages messages={this.state.received}/>
                                                 <div className = 'send-message'>
                                                     <textarea ref='message'></textarea>
@@ -60,10 +63,11 @@ class Chat extends React.Component{
                                                 </div>
                                             </div>
                                         </div> 
-        return component; // returning the component
+        return component // returning the component
     }
 
     componentDidMount(){
+
         this.#socket = socketIOClient(this.#ENDPOINT); // connecting to the endpoint
 
         /* on message received */
@@ -118,6 +122,8 @@ class Chat extends React.Component{
                 alert('Please enter a name'); // validation
             }
 
+            this.props.setName(name); // setting the name in the redux stores
+            
             this.setState({ // setting name of the user in the component's state
                 name:name
             });
@@ -162,4 +168,24 @@ class Chat extends React.Component{
     }
 }
 
-export default Chat; // export the component
+
+/*
+Other functions required for the Redux Implementation
+*/ 
+
+// this function is used to send additional props 
+const mapStateToProps = state => {
+    return {
+        name:state.name
+    }
+}
+
+// this function is used to send the additional props (for sending action Producer only)
+const mapDispatchToProps = dispatch =>{
+    return{
+        setName: (name)=> dispatch(setNameReducer(name))
+    }
+}
+
+// connect function is used to bind the redux functionality to this component
+export default connect(mapStateToProps,mapDispatchToProps)(Chat); // export the component
